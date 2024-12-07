@@ -1,0 +1,145 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+header{
+    padding: 10px;
+    background-color: #3F51B5;
+    color: white;
+    text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+header>div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+header>div>*{
+    margin-right: 30px;
+    position: relative;
+}
+.nodeUserInput{
+    border-radius: 5px;
+    color: #3F51B5;
+    border-color: #3F51B5;
+    padding: 5px;
+    background-color: white;
+}
+#nodeBgColor{
+    position: relative;
+    top: 4px;
+    border-radius: 5px;
+}
+
+.box {
+    min-width: 150px;
+    align-content: center;
+    background-color: white;
+    color: #3F51B5;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.box>p{
+    margin: auto;
+}
+.clickableBox
+{
+    cursor: pointer;
+}
+.clickableBox:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 2px 6px 5px rgba(0, 0, 0, 0.25);
+    background-color: #CFFF00;
+}
+.flowchart{
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 50vh;
+}
+#outerContainer{
+    padding-left: 60px;
+    padding-right: 60px;
+    width:fit-content;
+    position: relative;
+
+}
+.rowContainer{
+    padding-right: 120px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+}
+.Btn{
+    cursor: pointer;
+    color: #3F51B5;
+    font-size: 1.1em;
+    font-weight: 400;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #fff;
+    border-width: 1px;
+    border-color: #f4f4f4;
+    border-radius: 5px;
+    height: 25px;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-style: outset;
+}
+.addBtn{
+    position:absolute;
+    bottom: 0px;
+    left: -10px;
+    width: 25px;
+}
+.removeBtn{
+    position:absolute;
+    bottom: 25px;
+    left: -10px;
+    width: 25px;
+}
+#sourceCodeContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 89%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px;
+    min-height: 50vh;
+}
+.sourceCodeStripButton{
+    margin: 10px;
+    position: relative;
+    bottom: 4px;
+}
+
+#sourceCode{
+    flex-grow: 1;
+    background-color: #fff;
+    border-radius: 10px;
+}
+#sourceCodeStrip{
+    display: flex;
+}
+#headerForSourceCode{
+    margin-top: 0;
+}
+input[type="file"] {
+    display: none;
+  }
+
+.highlight{
+    border-width: 3px !important;
+    border-color: #FFA500 !important;
+    border: solid;
+}
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flowchart</title>
+    <link href="style.css" rel="stylesheet" type="text/css"></link>
+</head>
+<body>
+    <header>
+        <div>
+            <button id="removeButtons" class="Btn" style="background-color: red;height:fit-content;" >Remove Buttons</button>
+            <div>
+                <select id="nodeDropdown" class="nodeUserInput">
+                    <option value="">Select a node</option>
+                    <option value="flowchartRoot">flowchartRoot</option>
+                </select>
+            </div>
+            
+            <div style:="position: relative;top: -1px;">
+                <select id="nodeColor" class="nodeUserInput">
+                    <option value="">What to change color of</option>
+                    <option value="backgroundColor">Background Color</option>
+                    <option value="fontColor"> Font Color</option>
+                    <option value="borderColor"> Border Color</option>
+                </select>
+                <input type="color" id="nodeBgColor" onchange="updateColor()" />
+            </div>
+            
+            <div>
+                <select id="nodeFont" class="nodeUserInput" onchange="updateFont(this.value)">
+                    <option value="">Select Font</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
+            </div>
+            <div>
+                <label for="nodeText">Node Text:</label>
+                <textarea id="nodeText" class="nodeUserInput" placeholder="Enter new text">000</textarea>
+                <button class="Btn" onclick="updateNodeText()">Update Text</button>
+            </div>
+        </div>
+
+    </header>   
+    <div class="flowchart" id="flowchart">
+
+        <div id="outerContainer">
+            <div id="flowchartLayerRoot" class="rowContainer activeBranch">
+                <div id="flowchartRoot" class="box"><p class="nodeDisplayedText">First Node</p><button class="Btn addBtn" >+</button></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sourceCodeContainer">
+            <div id="sourceCodeStrip">
+                <h1 id="headerForSourceCode" style="margin-right: 20px;">Source Code</h1>
+                <button class="Btn sourceCodeStripButton" id="copyButton" data-clipboard-target="#sourceCode">Copy Text</button>
+                <a id="downloadButton" class="sourceCodeStripButton" style="height: fit-content;"><button class="Btn" >Download</button></a>
+                <label class="Btn sourceCodeStripButton" for="uploadHTML" style="height: fit-content;">
+                    Upload
+                </label>
+                <input type="file" id="uploadHTML" accept=".json"/>
+            </div>
+        <textarea id="sourceCode" readonly></textarea>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+    <script src="newsource.js"></script>
+
+</body>
+</html>

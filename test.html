@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="Interactive Flowchart">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            background-color: white;
+            color: #FFA500;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            flex-grow: 1;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .clickableBox
+        {
+            cursor: pointer;
+        }
+        .clickableBox:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 2px 6px 5px rgba(0, 0, 0, 0.25);
+        }
+        .flowchart{
+            display: flex;
+            margin-top: 30px;
+            flex-direction: column;
+            align-items: center;
+            min-height: 50vh;
+        }
+        #outerContainer{
+            width:33%;
+            position: relative;
+
+        }
+        .rowContainer{
+            display: flex;
+            position: relative;
+            width: 100%;
+        }
+
+
+        </style>
+    </head>
+    <body>
+        
+        <!-- Add flowchar code HEEEREE -->
+
+        <div class="flowchart" id="flowchart">        <div id="outerContainer">            <div id="flowchartLayerRoot" class="rowContainer activeBranch">                <div id="flowchartRoot" class="box" data-children="node0">Customer Call Received</div>            </div>        <div class="rowContainer" id="layer0"><div class="box" id="node0" data-parent="flowchartRoot" data-children="node1 node3 node4">new Node</div></div><div class="rowContainer" id="layer1"><div class="box clickableBox" id="node1" data-parent="node0" data-children="node2 node5 node6" style="color: rgb(3, 200, 226);">new Node</div><div class="box clickableBox" id="node3" data-parent="node0" data-children="node7" style="background-color: rgb(226, 3, 3);">new Node</div><div class="box clickableBox activeBranch" id="node4" data-parent="node0" data-children="node8" style="flex-grow: 3; display: flex; border-color: rgb(104, 226, 3); border-style: solid; border-width: 2px;">new Node</div></div><div class="rowContainer" id="layer2"><div class="box clickableBox" id="node2" data-parent="node1" style="flex-grow: 1; display: none;">new Node</div><div class="box clickableBox" id="node5" data-parent="node1" style="flex-grow: 1; display: none;">new Node</div><div class="box clickableBox" id="node6" data-parent="node1" data-children="node11" style="flex-grow: 1; display: none;">new Node</div><div class="box" id="node7" data-parent="node3" data-children="node10" style="flex-grow: 1; display: none;">new Node</div><div class="box" id="node8" data-parent="node4" data-children="node9" style="flex-grow: 1; display: flex;">new Node</div></div><div class="rowContainer" id="layer3"><div class="box" id="node9" data-parent="node8" style="flex-grow: 1; display: flex;">new Node</div><div class="box" id="node10" data-parent="node7" style="flex-grow: 1; display: none;">new Node</div><div class="box" id="node11" data-parent="node6" style="flex-grow: 1; display: none;">new Node</div></div></div>    </div>
+
+<script>
+
+    document.querySelectorAll('.clickableBox').forEach((element) => {
+        element.addEventListener('click', () => {
+            toggleElement(element);
+        })
+    })
+
+function toggleElement(element)
+{
+    if(element.parentNode.nextElementSibling !== null){
+        const hideElements = (element) => {
+            if(element.nextElementSibling !== null)
+                {
+                    hideElements(element.nextElementSibling);
+                }
+                element.childNodes.forEach((child) => {
+                    if(child.classList.contains('activeBranch'))
+                    {
+                        child.classList.remove('activeBranch');
+                    }
+                    child.style.flexGrow = 1;
+                    child.style.display = 'none';
+                });
+                
+        }
+        const activateElements = (element) => {
+            element.style.display = 'flex';
+            if(element.getAttribute('data-children') !== null)
+            {
+                let Children = element.getAttribute('data-children').split(' ');
+                if(Children.length > 1)
+                {
+                    Children.forEach((child) => {
+                        document.querySelector(`#${child}`).style.display = 'flex';
+                
+                    });
+                }
+                else
+                {
+                    let child = element.getAttribute('data-children');
+                    activateElements(document.querySelector(`#${child}`));
+
+                }
+            }
+        }
+
+        hideElements(element.parentNode.nextElementSibling);
+        element.parentNode.childNodes.forEach((child) => {
+            if(child.classList.contains('activeBranch'))
+            {
+                child.classList.remove('activeBranch');
+                child.style.flexGrow = 1;
+            }
+            //child.style.display = 'flex';
+        });
+        element.classList.add('activeBranch');
+        element.style.flexGrow = element.parentNode.children.length;
+        activateElements(element);
+
+    }
+
+}
+
+</script>
+</body>
+</html>
